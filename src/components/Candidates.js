@@ -24,9 +24,9 @@ function Candidates() {
             title: 'Photo',
             dataIndex: 'photo',
             key: 'photo',
-            // render: photo => (
-            //     <img alt='Profile' src={photo} />
-            // )
+            render: photo => (
+                <img alt='Profile' src={photo} />
+            )
         },
         {
             title: 'Name',
@@ -126,10 +126,10 @@ function Candidates() {
                     type="primary"
                     onClick={() => {
                         selectedRowKeys.map((item, index) =>  selectedCandidates[index] = data.find((candidate)=>candidate.id===item) );
-                        console.log(selectedCandidates)
+                        console.log(JSON.stringify(selectedCandidates))
                                            
                         //post to server after clicking submit button, url below should be replaced with real URL
-                        axios.post('url',{selectedCandidates})
+                        axios.post('url',JSON.stringify(selectedCandidates))
                             .then(res=>console.log(res))
                             .catch(err=>console.error(err))
                     }}
