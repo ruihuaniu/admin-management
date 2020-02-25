@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import data from './data/sample-example'
+import data from '../data/sample-example'
 import { Table, Collapse, Modal, Button } from 'antd'
 import axios from 'axios'
 import 'antd/dist/antd.css'
 
 function Candidates() {
 
-    const { Panel } = Collapse;
-    const [visible, setVisible] = useState(false);
+    // const { Panel } = Collapse;
+    // const [visible, setVisible] = useState(false);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const selectedCandidates = [];
 
@@ -44,7 +44,7 @@ function Candidates() {
         //     )
         // },
         {
-            title: 'Data of Birth',
+            title: 'Date of Birth',
             dataIndex: 'dob',
             key: 'dob',
             render: dob => (
@@ -84,10 +84,10 @@ function Candidates() {
                 return(
                     <div>
 
-                    {/* <Button onClick={() => { Modal.info({ title: 'Resume', content: atob(resume), maskClosable() { } }) }}>Open Resume</Button> */}
+                    <Button onClick={() => { Modal.success({ title: 'Resume', content: atob(resume), maskClosable() { } }) }}>Open Resume</Button>
 
                     {/* Issue needs to be fixed below, all the modals will become visbile after clicking*/}
-                    <Button  onClick={()=>{setVisible(true);console.log(visible);}}>Open Resume</Button>
+                    {/* <Button  onClick={()=>{setVisible(true);console.log(visible);}}>Open Resume</Button>
                     <p>visible below button: {visible}</p>
                             <Modal 
                         title="Resume" 
@@ -99,15 +99,12 @@ function Candidates() {
                         
                         >
                            {atob(resume)}
-                        </Modal>             
+                        </Modal>              */}
                    
                 </div>
                 )
                 
             }
-                
-
-    
 
         }
     ]
@@ -130,17 +127,14 @@ function Candidates() {
                     onClick={() => {
                         selectedRowKeys.map((item, index) =>  selectedCandidates[index] = data.find((candidate)=>candidate.id===item) );
                         console.log(selectedCandidates)
-                     
-                       
-                        // url below should be replaced with real URL
+                                           
+                        //post to server after clicking submit button, url below should be replaced with real URL
                         axios.post('url',{selectedCandidates})
                             .then(res=>console.log(res))
                             .catch(err=>console.error(err))
                     }}
                     disabled={!hasSelected}
-                   
-                >
-                    Submit
+                   >Submit
                 </Button>
                 <span style={{ marginLeft: 8 }}>
                     {hasSelected ? `Selected ${selectedRowKeys.length} Candidates` : ""}
