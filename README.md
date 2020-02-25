@@ -10,7 +10,9 @@
 * Candidates can be starred and submitted to a specified URL
 
 
-## Languages Used
+## Languages & Framework Used
 * React
+* Ant Design
 
 
+### Developed by [Barton](www.bartonweb.site) :)
