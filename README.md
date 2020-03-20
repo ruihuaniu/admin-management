@@ -1,5 +1,6 @@
 # Candidate Admin Tool
 
+> [Live Demo](https://candidate-admin.now.sh)
 
 ## Features
 * Read data from the local JSON file
@@ -12,7 +13,5 @@
 
 ## Languages & Libraries Used
 * React
-* Ant Design
 
 
-### Developed by [Barton](https://www.bartonweb.site) :)

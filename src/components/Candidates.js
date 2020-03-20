@@ -24,9 +24,9 @@ function Candidates() {
             title: 'Photo',
             dataIndex: 'photo',
             key: 'photo',
-            render: photo => (
-                <img alt='Profile' src={photo} />
-            )
+            // render: photo => (
+            //     <img alt='Profile' src={photo} />
+            // )
         },
         {
             title: 'Name',
@@ -141,8 +141,7 @@ function Candidates() {
                 </span>
             </div>
 
-            <Table
-            
+            <Table            
                 columns={columns}
                 expandedRowRender={record => <p>{record.description}</p>}
                 dataSource={data}
