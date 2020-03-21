@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import data from '../data/sample-example'
-import { Table, Collapse, Modal, Button } from 'antd'
+import { Table, Collapse, Modal, Button, Row, Col } from 'antd'
 import axios from 'axios'
 import 'antd/dist/antd.css'
 
 function Candidates() {
 
-    // const { Panel } = Collapse;
-    // const [visible, setVisible] = useState(false);
+    const { Panel } = Collapse;
+    const [visible, setVisible] = useState(false);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const selectedCandidates = [];
 
@@ -17,21 +17,24 @@ function Candidates() {
             title: 'ID',
             dataIndex: 'id',
             key: 'id',
+            align:'center',
             defaultSortOrder: 'ascend',
             sorter: (a, b) => a.id - b.id,
         },
-        {
-            title: 'Photo',
-            dataIndex: 'photo',
-            key: 'photo',
-            // render: photo => (
-            //     <img alt='Profile' src={photo} />
-            // )
-        },
+        // {
+        //     title: 'Photo',
+        //     dataIndex: 'photo',
+        //     key: 'photo',
+        //     width: 50,
+        //     // render: photo => (
+        //     //     <img alt='Profile' src={photo} />
+        //     // )
+        // },
         {
             title: 'Name',
             dataIndex: 'real_name',
             key: 'real_name',
+            align:'center',
             sorter: (a, b) => { return a.real_name.localeCompare(b.real_name) },
         },
         // {
@@ -47,6 +50,7 @@ function Candidates() {
             title: 'Date of Birth',
             dataIndex: 'dob',
             key: 'dob',
+            align:'center',
             render: dob => (
                 <p>{dob.substr(0, 10)}</p>
             ), 
@@ -56,6 +60,7 @@ function Candidates() {
             title: 'Australian Citizen',
             dataIndex: 'australian_citizen',
             key: 'australian_citizen',
+            align:'center',
             render: citizen=>(
                 <p>{citizen?'YES':(citizen===false?'NO':'')}</p>
                 
@@ -67,24 +72,28 @@ function Candidates() {
             title: 'Favourite Language',
             dataIndex: 'favourite_language',
             key: 'favourite_language',
+            align:'center',
             sorter: (a, b) => { return a.favourite_language.localeCompare(b.favourite_language) },
         },
         {
             title: 'Years as Developer',
             dataIndex: 'years_as_sw_dev',
             key: 'years_as_sw_dev',
+            align:'center',
             sorter: (a, b) => a.years_as_sw_dev - b.years_as_sw_dev,
         },
         {
             title: 'Resume',
             dataIndex: 'resume_base64',
             key: 'resume_base64',
+            align:'center',
             render: (resume, index) => {
                 
                 return(
                     <div>
 
-                    <Button onClick={() => { Modal.success({ title: 'Resume', content: atob(resume), maskClosable() { } }) }}>Open Resume</Button>
+                    <Button onClick={() => { Modal.success({ title: 'Resume', content: atob(resume), 
+                    maskClosable() { } }) }}>Open Resume</Button>
 
                     {/* Issue needs to be fixed below, all the modals will become visbile after clicking*/}
                     {/* <Button  onClick={()=>{setVisible(true);console.log(visible);}}>Open Resume</Button>
@@ -99,8 +108,8 @@ function Candidates() {
                         
                         >
                            {atob(resume)}
-                        </Modal>              */}
-                   
+                        </Modal>             
+                    */}
                 </div>
                 )
                 
@@ -121,7 +130,8 @@ function Candidates() {
 
     return (
         <div>
-            <div style={{marginTop: 10, marginBottom:10, marginLeft: 50}}>
+            <Row  justify="center" gutter={[16,{sm:16, lg:16}]} >
+                <Col sm={24} lg={18} offset={1}>
                 <Button
                     type="primary"
                     onClick={() => {
@@ -139,16 +149,23 @@ function Candidates() {
                 <span style={{ marginLeft: 8 }}>
                     {hasSelected ? `Selected ${selectedRowKeys.length} Candidates` : ""}
                 </span>
-            </div>
-
+                </Col>
+            </Row>
+            
+            <Row justify="center"  >
+                <Col  sm={22} lg={18}>
             <Table            
                 columns={columns}
                 expandedRowRender={record => <p>{record.description}</p>}
                 dataSource={data}
                 rowSelection={rowSelection}
-                pagination={false}
                 rowKey='id'
+                pagination={{ pageSize: 10 }}
+               
             />
+            </Col>
+           
+            </Row>
 
         </div>       
     )
