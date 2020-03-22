@@ -131,7 +131,7 @@ function Candidates() {
         onChange: selectedRowKeys => {
             console.log("selectedRowKeys changed: ", selectedRowKeys);
             setSelectedRowKeys(selectedRowKeys);
-            // setIsSelected(true)
+            
         }
     };
      const isSelected = selectedRowKeys.length ;
@@ -153,9 +153,9 @@ function Candidates() {
                 </Col>    
             </Row>
 
-            <Row justify="center" gutter={[0,16]} >
-            <Col sm={12} lg={18} offset={1}>
-            <Tooltip 
+            <Row justify="left" gutter={[0,16]} >
+            <Col sm={{span:12, offset:2}} lg={{span:18, offset:4}} >
+            {/* <Tooltip 
             placement="top" 
             title="Select above first"   
             // visible={ isSelected?false:true}  
@@ -168,9 +168,9 @@ function Candidates() {
                         console.log(JSON.stringify(selectedCandidates))
 
                         //post to server after clicking submit button, url below should be replaced with real URL
-                        axios.post('url', JSON.stringify(selectedCandidates))
-                            .then(res => console.log(res))
-                            .catch(err => console.error(err))
+                        // axios.post('url', JSON.stringify(selectedCandidates))
+                        //     .then(res => console.log(res))
+                        //     .catch(err => console.error(err))
                     }}
                    
                     disabled={!isSelected}
@@ -180,7 +180,7 @@ function Candidates() {
                 </Tooltip>
                 <span style={{ marginLeft: 8 }}>
                     {isSelected ? `Selected ${selectedRowKeys.length} Candidates` : ""}
-                </span>
+                </span> */}
             </Col>
             </Row>
 

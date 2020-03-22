@@ -54,8 +54,8 @@ export default function AddUser() {
 
     return (
         <div>
-            <Row justify="center">
-                <Col sm={12} lg={18} offset={1}>
+            <Row justify="left" gutter={[0,16]}>
+                <Col  sm={{span:12, offset:2}} lg={{span:18, offset:4}} >
                     <Button onClick={() => setVisible(true)}>Add User </Button>
                     <Modal
                         title={<h3>Add New User</h3>}
