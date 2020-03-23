@@ -15,20 +15,23 @@ const App = () => {
 
     return (
         <div>
-            <h1 className="title">Candidate Admin Tools</h1>
+            <h1 className="title">Candidate Admin Tool</h1>
             <UserContext.Provider value={{ user, setUser }}>
                 <Row justify="center">
                     <Col sm={24} lg={18} >
-                        something inside col 
+                        something inside col
                     <UserTable />
                     </Col>
                 </Row>
-                <Row justify="start" gutter={[0,16]} >
-                <Col sm={12} lg={{span:2, offset:3}} >  
+                <Row justify="start" gutter={[0, 16]} >
+                    <Col xs={{ span: 6, offset: 2 }} lg={{ span: 2, offset: 3 }} >
                         <DeleteUser />
-                </Col>
-                <Col sm={12} lg={{span:2}} >    
+                    </Col>
+                    <Col xs={6} lg={{ span: 2 }} >
                         <AddUser />
+                    </Col>
+                    <Col xs={24} lg={{ span: 6, offset:11 }} >
+                       <span className="data-description">* All the data are mock data</span>
                     </Col>
                 </Row>
 
@@ -38,6 +41,10 @@ const App = () => {
             <style jsx="true">{`
             .title{
                 text-align:center;
+            }
+
+            .data-description{
+                font-style:italic;
             }
             
             `} </style>
