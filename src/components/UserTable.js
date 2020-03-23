@@ -139,8 +139,8 @@ function Candidates() {
 
     return (
         <div>
-            <Row justify="center"  >
-                <Col sm={22} lg={18}>
+            
+               
                     <Table
                         columns={columns}
                         expandedRowRender={record => <p>{record.description}</p>}
@@ -150,11 +150,10 @@ function Candidates() {
                         pagination={{ pageSize: 10 }}
 
                     />
-                </Col>    
-            </Row>
+             
 
-            <Row justify="left" gutter={[0,16]} >
-            <Col sm={{span:12, offset:2}} lg={{span:18, offset:4}} >
+            {/* <Row justify="left" gutter={[0,16]} >
+            <Col sm={{span:12, offset:2}} lg={{span:18, offset:4}} > */}
             {/* <Tooltip 
             placement="top" 
             title="Select above first"   
@@ -181,8 +180,8 @@ function Candidates() {
                 <span style={{ marginLeft: 8 }}>
                     {isSelected ? `Selected ${selectedRowKeys.length} Candidates` : ""}
                 </span> */}
-            </Col>
-            </Row>
+            {/* </Col>
+            </Row> */}
 
         </div >       
     )
