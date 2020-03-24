@@ -19,7 +19,7 @@ const App = () => {
             <UserContext.Provider value={{ user, setUser }}>
                 <Row justify="center">
                     <Col sm={24} lg={18} >
-                        something inside col
+                        
                     <UserTable />
                     </Col>
                 </Row>
@@ -30,7 +30,7 @@ const App = () => {
                     <Col xs={6} lg={{ span: 2 }} >
                         <AddUser />
                     </Col>
-                    <Col xs={24} lg={{ span: 6, offset:11 }} >
+                    <Col xs={{span: 22, offset:2}} lg={{ span: 6, offset:11 }} >
                        <span className="data-description">* All the data are mock data</span>
                     </Col>
                 </Row>
