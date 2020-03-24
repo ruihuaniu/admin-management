@@ -1,18 +1,18 @@
 import React, { useState, useContext } from 'react'
 import { Button, Modal, Form, Select, Upload, Row, Col, Input, InputNumber, DatePicker, message } from 'antd'
-import {UploadOutlined} from '@ant-design/icons'
+import { UploadOutlined } from '@ant-design/icons'
 import { UserContext } from './UserContext'
 
 export default function AddUser() {
 
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
     const [name, setName] = useState('')
     const [birthday, setBirthday] = useState('')
     const [language, setLanguage] = useState('')
     const [years, setYears] = useState(0)
-    const {users, selectedRow}  = useContext(UserContext)
-    const [user, setUser] =users
+    const { users, selectedRow } = useContext(UserContext)
+    const [user, setUser] = users
     // const [selectedRowKeys, setSelectedRowKeys] = selectedRow
     const { Option } = Select
 
@@ -45,35 +45,43 @@ export default function AddUser() {
 
             })
 
-        // form.submit();
+        // form.submit()
+    }
 
-
+    const handleCancel = () => {
+        setVisible(false);
+        // form.resetFields()   //use or not? depends
+        // message.error("Cacelled")
     }
 
     const onCreate = (values) => {
+
+        console.log("form.getFieldValue() ",form.getFieldsValue());
+        
         const formatValues = {
             ...values,
             'dob': values['dob'].format('YYYY-MM-DD'),
             'favourite_language': values['favourite_language'][0],
             'id': Math.round(Math.random() * 1000),
-            'resume_base64': values['resume_base64'][0]
+            //'resume_base64': values['resume_base64'][0]
+            'resume_base64': btoa("Resume")
         }
-        console.log(values);
+        console.log("Value in AddUser.js is: ", values);
 
-        console.log(formatValues);
+        console.log("formatValue in AddUser.js is: ", formatValues);
 
         setUser([...user, formatValues])
-        console.log(user);
+        
     }
 
     const normFile = (e) => {
+        console.log("file upload info: ", e);
         if (Array.isArray(e)) {
-            console.log(e);
+           
             return e
 
         }
-        console.log(e);
-        console.log(e.fileList);
+        
         return e & e.fileList
 
 
@@ -96,15 +104,14 @@ export default function AddUser() {
 
     return (
         <div>
-            {/* <Row justify="left" gutter={[0,16]}>
-                <Col  sm={{span:12, offset:2}} lg={{span:18, offset:4}} > */}
+
             <Button type="primary" onClick={() => setVisible(true)}>Add User </Button>
             <Modal
                 title={<h3>Add New User</h3>}
                 visible={visible}
                 onOk={handleOk}
                 confirmLoading={isLoading}
-                onCancel={() => { setVisible(false); form.resetFields() }}
+                onCancel={handleCancel}
                 maskClosable={false}
             ><Form
                 {...formItemLayout}
@@ -118,9 +125,7 @@ export default function AddUser() {
                         <Input value={name} onChange={(e) => { setName(e.target.value) }} />
                     </Form.Item>
                     <Form.Item name="dob" label="Birthday" rules={[{ required: true, message: 'Please input the date of birthday' }]}>
-                        <DatePicker value={birthday} onChange={(e) => {
-                            console.log(e);
-                        }} />
+                        <DatePicker value={birthday} />
                     </Form.Item>
                     <Form.Item name="favourite_language" label="Favourite language" rules={[{ required: true }]}>
                         {/* <Input value ={language} onChange={(e)=>{setLanguage(e.target.value)}}/> */}
@@ -138,18 +143,19 @@ export default function AddUser() {
                         </Select>
                     </Form.Item>
                     <Form.Item name="years_as_sw_dev" label="Years as Developer" rules={[{ required: true }]}>
-                        <InputNumber value={years} onChange={(e) => {
-                            console.log(e);
-                        }} />
+                        <InputNumber value={years}/>
                     </Form.Item>
                     <Form.Item
                         name="resume_base64"
                         label="Resume"
-                        valuePropName="fileList"
+                        valuePropName="file"  //don't know why fileList not working here
                         getValueFromEvent={normFile}
-                        rules={[{ required: true }]}
+                        // rules={[{ required: true }]}
                     >
-                        <Upload >
+                        <Upload 
+                        name="resume_base64"
+                        action="http://www.mocky.io/v2/5e79e1473000006f009303b8"
+                        >
                             <Button>
                                 <UploadOutlined /> Click to upload
                             </Button>

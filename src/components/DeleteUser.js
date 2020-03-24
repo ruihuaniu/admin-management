@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Row, Col, Tooltip, Popconfirm, message } from 'antd'
 import { UserContext } from './UserContext'
 
@@ -19,6 +19,9 @@ export default function DeleteUser() {
         setSelectedRowKeys([])  //deselect the index of users 
         message.success("Selected items are deleted")
 
+      
+        
+
     }
 
     
@@ -30,7 +33,7 @@ export default function DeleteUser() {
             <Tooltip
                 placement="top"
                 title="Select above first"
-                // visible={ isSelected?false:true}  
+                // visible={isSelected?false:true}  
                 trigger="hover"
             >
                 <Popconfirm
@@ -40,17 +43,18 @@ export default function DeleteUser() {
                     okText="Yes"
                     CancelText="No"
                     disabled={!isSelected}
+                   
                 >
-                    <Button type="danger" disabled={!isSelected}>
-                        Delete
+                    <Button type="danger" disabled={!isSelected} >
+                        Delete {isSelected ? `${selectedRowKeys.length} items` : ""}
                     </Button>
 
                 </Popconfirm>
 
             </Tooltip>
-            <p style={{ width: '200px' }}>
+            {/* <p style={{ width: '200px' }}>
                 {isSelected ? `Selected ${selectedRowKeys.length} Users` : ""}
-            </p>
+            </p> */}
         </div>
     )
 }

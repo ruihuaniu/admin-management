@@ -11,8 +11,8 @@ const App = () => {
 
     const [user, setUser] = useState(data)
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-    console.log('User in App.js', user);
-    console.log('selectRowKeys in App.js', selectedRowKeys);
+    // console.log('User in App.js', user);
+    // console.log('selectRowKeys in App.js', selectedRowKeys);
 
     return (
         <div>
@@ -24,13 +24,13 @@ const App = () => {
                     </Col>
                 </Row>
                 <Row justify="start" gutter={[0, 16]} >
-                    <Col xs={{ span: 6, offset: 2 }} lg={{ span: 2, offset: 3 }} >
+                    <Col xs={{ span: 6, offset: 2 }} lg={{ span: 3, offset: 3 }} >
                         <DeleteUser />
                     </Col>
                     <Col xs={6} lg={{ span: 2 }} >
                         <AddUser />
                     </Col>
-                    <Col xs={{span: 22, offset:2}} lg={{ span: 6, offset:11 }} >
+                    <Col xs={{span: 22, offset:2}} lg={{ span: 5, offset:10 }} >
                        <span className="data-description">* All the data are mock data</span>
                     </Col>
                 </Row>
