@@ -6,12 +6,14 @@ import 'antd/dist/antd.css'
 import { UserContext } from './UserContext'
 
 function Candidates() {
-    const {user, setUser}  = useContext(UserContext)
+    const {users, selectedRow}  = useContext(UserContext)
+    const [user, setUser] =users
+    const [selectedRowKeys, setSelectedRowKeys] = selectedRow
 
     const { Panel } = Collapse;
     const [visible, setVisible] = useState(false);
     // const [isSelected, setIsSelected] = useState(false);
-    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    // const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const selectedCandidates = [];
     console.log(user);
     
@@ -128,13 +130,14 @@ function Candidates() {
 
     //Used for candidates selection checkbox
     const rowSelection = {
+        selectedRowKeys,
         onChange: selectedRowKeys => {
             console.log("selectedRowKeys changed: ", selectedRowKeys);
             setSelectedRowKeys(selectedRowKeys);
             
         }
     };
-     const isSelected = selectedRowKeys.length ;
+    //  const isSelected = selectedRowKeys.length ;
 
 
     return (
@@ -146,7 +149,8 @@ function Candidates() {
                         expandedRowRender={record => <p>{record.description}</p>}
                         dataSource={user}
                         rowSelection={rowSelection}
-                        rowKey='id'
+                        // rowKey='id'
+                        rowKey={record=>user.indexOf(record)} //use the index of the user as the key
                         pagination={{ pageSize: 10 }}
 
                     />

@@ -10,16 +10,16 @@ import DeleteUser from './components/DeleteUser'
 const App = () => {
 
     const [user, setUser] = useState(data)
-    console.log(user);
-
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    console.log('User in App.js', user);
+    console.log('selectRowKeys in App.js', selectedRowKeys);
 
     return (
         <div>
             <h1 className="title">Candidate Admin Tool</h1>
-            <UserContext.Provider value={{ user, setUser }}>
+            <UserContext.Provider value={{ users:[user, setUser], selectedRow:[selectedRowKeys, setSelectedRowKeys] }}>
                 <Row justify="center">
-                    <Col sm={24} lg={18} >
-                        
+                    <Col sm={24} lg={18} >     
                     <UserTable />
                     </Col>
                 </Row>
@@ -34,7 +34,6 @@ const App = () => {
                        <span className="data-description">* All the data are mock data</span>
                     </Col>
                 </Row>
-
             </UserContext.Provider>
 
 

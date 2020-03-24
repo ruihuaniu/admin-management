@@ -1,17 +1,29 @@
 import React, { useContext } from 'react'
-import { Button, Row, Col, Tooltip } from 'antd'
+import { Button, Row, Col, Tooltip, Popconfirm, message } from 'antd'
 import { UserContext } from './UserContext'
 
 export default function DeleteUser() {
 
-    const { user, setUser } = useContext(UserContext)
+    const { users, selectedRow } = useContext(UserContext)
+    const [user, setUser] = users
+    const [selectedRowKeys, setSelectedRowKeys] = selectedRow
 
-    const deleteUser = () => {
+    const isSelected = selectedRowKeys.length > 0
+
+    const deleteUser = (itemId) => {
         const newUserList = [...user]
-        newUserList.pop()
-        console.log(newUserList);       
+        itemId.sort((a, b) => b - a) //descending order, to avoid the influence of index change when removing multiple values from an array
+        itemId.forEach((id) => { newUserList.splice(id, 1) })
+        console.log(newUserList);
         setUser(newUserList)
-       
+        setSelectedRowKeys([])  //deselect the index of users 
+        message.success("Selected items are deleted")
+
+    }
+
+    
+    const handleCancel = () => {
+        message.error("Cancelled")
     }
     return (
         <div>
@@ -21,19 +33,24 @@ export default function DeleteUser() {
                 // visible={ isSelected?false:true}  
                 trigger="hover"
             >
-                <Button
-                    type="danger"
-                    onClick={deleteUser}
-
-                // disabled={!isSelected}
-
+                <Popconfirm
+                    title={"Are you sure you want to delete these " +selectedRowKeys.length+ " users?"}
+                    onConfirm={() => deleteUser(selectedRowKeys)}
+                    onCancel={handleCancel}
+                    okText="Yes"
+                    CancelText="No"
+                    disabled={!isSelected}
                 >
-                    Delete
-                </Button>
+                    <Button type="danger" disabled={!isSelected}>
+                        Delete
+                    </Button>
+
+                </Popconfirm>
+
             </Tooltip>
-            <span style={{ marginLeft: 8 }}>
-                {/* {isSelected ? `Selected ${selectedRowKeys.length} Candidates` : ""} */}
-            </span>
+            <p style={{ width: '200px' }}>
+                {isSelected ? `Selected ${selectedRowKeys.length} Users` : ""}
+            </p>
         </div>
     )
 }

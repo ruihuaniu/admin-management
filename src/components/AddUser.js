@@ -5,13 +5,15 @@ import { UserContext } from './UserContext'
 
 export default function AddUser() {
 
-    const [visible, setVisible] = useState(true)
+    const [visible, setVisible] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [name, setName] = useState('')
     const [birthday, setBirthday] = useState('')
     const [language, setLanguage] = useState('')
     const [years, setYears] = useState(0)
-    const { user, setUser } = useContext(UserContext)
+    const {users, selectedRow}  = useContext(UserContext)
+    const [user, setUser] =users
+    // const [selectedRowKeys, setSelectedRowKeys] = selectedRow
     const { Option } = Select
 
 

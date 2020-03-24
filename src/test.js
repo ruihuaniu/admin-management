@@ -26,7 +26,7 @@ const newData = data;
 
 const newData2 = [...data]
 
-// console.log(newData);
+// console.log(newData)\
 
-console.log(newData2);
+console.log(2.toString());
 
