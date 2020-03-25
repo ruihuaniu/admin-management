@@ -6,10 +6,11 @@ import data from './data/sample-example'
 import UserTable from './components/UserTable'
 import AddUser from './components/AddUser'
 import DeleteUser from './components/DeleteUser'
+import SearchUser from './components/SearchUser'
 
 const App = () => {
 
-    const [user, setUser] = useState(data)
+    const [user, setUser] = useState(data.slice(0,9)) //only fetch 9 out of 20 users data
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     // console.log('User in App.js', user);
     // console.log('selectRowKeys in App.js', selectedRowKeys);
@@ -18,6 +19,11 @@ const App = () => {
         <div>
             <h1 className="title">Candidate Admin Tool</h1>
             <UserContext.Provider value={{ users:[user, setUser], selectedRow:[selectedRowKeys, setSelectedRowKeys] }}>
+                <Row justify="center" gutter={[0,16]}>
+                    <Col sm={24} lg={10} >     
+                    <SearchUser />
+                    </Col>
+                </Row>
                 <Row justify="center">
                     <Col sm={24} lg={18} >     
                     <UserTable />

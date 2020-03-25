@@ -17,7 +17,7 @@ export default function DeleteUser() {
         console.log(newUserList);
         setUser(newUserList)
         setSelectedRowKeys([])  //deselect the index of users 
-        message.success("Selected items are deleted")
+        message.success("Selected items are deleted",2)
 
       
         
@@ -26,7 +26,7 @@ export default function DeleteUser() {
 
     
     const handleCancel = () => {
-        message.error("Cancelled")
+        message.error("Cancelled",1.5)
     }
     return (
         <div>

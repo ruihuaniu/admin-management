@@ -5,7 +5,7 @@ import { UserContext } from './UserContext'
 
 export default function AddUser() {
 
-    const [visible, setVisible] = useState(true)
+    const [visible, setVisible] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [name, setName] = useState('')
     const [birthday, setBirthday] = useState('')
@@ -38,7 +38,7 @@ export default function AddUser() {
                     setVisible(false)
                     setIsLoading(false)
                     message.success("New user has been added")
-                }, 1500)
+                }, 800)
             })
             .catch(info => {
                 console.log('Validate failed', info);
@@ -61,7 +61,7 @@ export default function AddUser() {
         const formatValues = {
             ...values,
             'dob': values['dob'].format('YYYY-MM-DD'),
-            'favourite_language': values['favourite_language'][0],
+            'favourite_language': values['favourite_language'].join(),
             'id': Math.round(Math.random() * 1000),
             //'resume_base64': values['resume_base64'][0]
             'resume_base64': btoa("Resume")
