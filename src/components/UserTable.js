@@ -14,7 +14,7 @@ function Candidates() {
     const [visible, setVisible] = useState(false);
     // const [isSelected, setIsSelected] = useState(false);
     // const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-    const selectedCandidates = [];
+    // const selectedCandidates = [];
     console.log(user);
     
 
