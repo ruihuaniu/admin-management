@@ -7,12 +7,9 @@ export default function AddUser() {
 
     const [visible, setVisible] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
-    const [name, setName] = useState('')
-    const [birthday, setBirthday] = useState('')
-    const [language, setLanguage] = useState('')
-    const [years, setYears] = useState(0)
-    const { users, selectedRow } = useContext(UserContext)
+    const { users, usersData } = useContext(UserContext)
     const [user, setUser] = users
+    const [userData, setUserData] = usersData  //used for search feature
     // const [selectedRowKeys, setSelectedRowKeys] = selectedRow
     const { Option } = Select
 
@@ -71,6 +68,7 @@ export default function AddUser() {
         console.log("formatValue in AddUser.js is: ", formatValues);
 
         setUser([...user, formatValues])
+        setUserData([...userData, formatValues]) 
         
     }
 
@@ -122,10 +120,10 @@ export default function AddUser() {
 
             >
                     <Form.Item name="real_name" label="Name" rules={[{ required: true, message: 'Please input the name' }]} >
-                        <Input value={name} onChange={(e) => { setName(e.target.value) }} />
+                        <Input  />
                     </Form.Item>
                     <Form.Item name="dob" label="Birthday" rules={[{ required: true, message: 'Please input the date of birthday' }]}>
-                        <DatePicker value={birthday} />
+                        <DatePicker  />
                     </Form.Item>
                     <Form.Item name="favourite_language" label="Favourite language" rules={[{ required: true }]}>
                         {/* <Input value ={language} onChange={(e)=>{setLanguage(e.target.value)}}/> */}
@@ -143,7 +141,7 @@ export default function AddUser() {
                         </Select>
                     </Form.Item>
                     <Form.Item name="years_as_sw_dev" label="Years as Developer" rules={[{ required: true }]}>
-                        <InputNumber value={years}/>
+                        <InputNumber />
                     </Form.Item>
                     <Form.Item
                         name="resume_base64"

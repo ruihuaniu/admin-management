@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react'
 // import data from '../data/sample-example'
-import { Table, Collapse, Modal, Button, Row, Col,Tooltip } from 'antd'
+import { Table, Collapse, Modal, Button, Row, Col, Tooltip, Popconfirm, message } from 'antd'
 import axios from 'axios'
 import 'antd/dist/antd.css'
 import { UserContext } from './UserContext'
 
 function Candidates() {
-    const {users, selectedRow}  = useContext(UserContext)
-    const [user, setUser] =users
+    const { users, selectedRow } = useContext(UserContext)
+    const [user, setUser] = users
     const [selectedRowKeys, setSelectedRowKeys] = selectedRow
 
     const { Panel } = Collapse;
@@ -15,8 +15,8 @@ function Candidates() {
     // const [isSelected, setIsSelected] = useState(false);
     // const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     // const selectedCandidates = [];
-    console.log(user);
-    
+    // console.log(user);
+
 
     const columns = [
         {
@@ -24,7 +24,7 @@ function Candidates() {
             dataIndex: 'id',
             key: 'id',
             align: 'center',
-            defaultSortOrder: 'ascend',
+            // defaultSortOrder: 'ascend',
             sorter: (a, b) => a.id - b.id,
         },
         // {
@@ -69,7 +69,6 @@ function Candidates() {
             align: 'center',
             render: citizen => (
                 <p>{citizen ? 'YES' : (citizen === false ? 'NO' : '')}</p>
-
             ),
             // sorter: (a, b) => { return (a.australian_citizen && b.australian_citizen)?a.australian_citizen.localeCompare(b.australian_citizen):(a-b) },
 
@@ -101,7 +100,7 @@ function Candidates() {
                         <Button onClick={() => {
                             Modal.success({
                                 title: 'Resume', content: atob(resume),
-                                maskClosable() { }
+
                             })
                         }}>Open Resume</Button>
 
@@ -120,21 +119,56 @@ function Candidates() {
                            {atob(resume)}
                         </Modal>             
                     */}
+
                     </div>
                 )
 
             }
 
+        },
+        {
+            title: 'Operation',
+            dataIndex: 'operation',
+            key: 'operation',
+            align: 'center',
+            render: (all, record) => {
+
+                return (
+                    <div>
+                        <Popconfirm
+                        title="Are you sure to delete?"
+                        onConfirm ={()=>{
+                            const index = user.indexOf(record)
+                            console.log("item is:", index);
+                            const newUserList = [...user]
+                            newUserList.splice(index, 1)
+                            setUser(newUserList)
+                            message.success("The item has been deleted",1.5)
+
+                        }}
+                        onCancel = {()=>{message.error("Cancelled",1.5)}}
+                        okText ="Yes"
+                        cancelText ="No"
+                        >
+                            <Button danger onClick={() => {
+                               
+
+                            }}>Delete</Button>
+                        </Popconfirm>
+                    </div>
+                )
+            }
         }
+
     ]
 
     //Used for candidates selection checkbox
     const rowSelection = {
         selectedRowKeys,
         onChange: selectedRowKeys => {
-            console.log("selectedRowKeys changed: ", selectedRowKeys);
+            // console.log("selectedRowKeys changed: ", selectedRowKeys);
             setSelectedRowKeys(selectedRowKeys);
-            
+
         }
     };
     //  const isSelected = selectedRowKeys.length ;
@@ -142,19 +176,19 @@ function Candidates() {
 
     return (
         <div>
-            
-               
-                    <Table
-                        columns={columns}
-                        expandedRowRender={record => <p>{record.description}</p>}
-                        dataSource={user}
-                        rowSelection={rowSelection}
-                        // rowKey='id'
-                        rowKey={record=>user.indexOf(record)} //use the index of the user as the key
-                        pagination={{ pageSize: 10 }}
 
-                    />
-             
+
+            <Table
+                columns={columns}
+                expandedRowRender={record => <p>{record.description}</p>}
+                dataSource={user}
+                rowSelection={rowSelection}
+                // rowKey='id'
+                rowKey={record => user.indexOf(record)} //use the index of the user as the key
+                pagination={{ pageSize: 10 }}
+
+            />
+
 
             {/* <Row justify="left" gutter={[0,16]} >
             <Col sm={{span:12, offset:2}} lg={{span:18, offset:4}} > */}
@@ -187,7 +221,7 @@ function Candidates() {
             {/* </Col>
             </Row> */}
 
-        </div >       
+        </div >
     )
 }
 

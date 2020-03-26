@@ -9,15 +9,19 @@ function SearchUser() {
 
 
 
-    const { users } = useContext(UserContext)
+    const { users, usersData } = useContext(UserContext)
     const [user, setUser] = users
+    const [userData, setUserData] = usersData  //used for search feature
 
     const { Search } = Input
     // const userCopy = JSON.parse(JSON.stringify(user))
 
     const handleSearch = (value) => {
         console.log("value is:", value);
-        const searchResult = data.filter((item) => item.real_name.toLowerCase().includes(value.toLowerCase()))
+        console.log("User is: ",user);
+        
+        const searchResult = userData.filter((item) => item.real_name.toLowerCase().includes(value.toLowerCase()))
+        console.log("UserData is: ",userData);
         console.log("searchResult is: ", searchResult);
         setUser(searchResult)
     }
@@ -25,7 +29,7 @@ function SearchUser() {
     return (
         <div>
             <Search
-                placeholder="search here..."
+                placeholder="search name here..."
                 //onSearch={(value)=>{handleSearch(value)}}
                 onChange={(e) => { handleSearch(e.target.value) }}
                 enterButton="Search"
