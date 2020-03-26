@@ -92,33 +92,38 @@ function Candidates() {
             dataIndex: 'resume_base64',
             key: 'resume_base64',
             align: 'center',
-            render: (resume, index) => {
+            render: (resume, item) => {
 
                 return (
                     <div>
 
                         <Button onClick={() => {
-                            Modal.success({
-                                title: 'Resume', content: atob(resume),
-
+                            console.log("resume is:", item);
+                            // console.log("index is:", index);
+                            Modal.confirm({
+                                title: 'Resume', 
+                                content: atob(resume),
+                                 width:1000, 
+                                //  cancelText:'', 
+                                 maskClosable:true,
+                                 cancelButtonProps:{style: { display: 'none' }}  //hide the cancel button
                             })
                         }}>Open Resume</Button>
 
                         {/* Issue needs to be fixed below, all the modals will become visbile after clicking*/}
-                        {/* <Button  onClick={()=>{setVisible(true);console.log(visible);}}>Open Resume</Button>
-                    <p>visible below button: {visible}</p>
-                            <Modal 
-                        title="Resume" 
-                        visible={visible}
-                        onOk={()=>setVisible(false)}
-                        onCancel ={()=>setVisible(false)}
-                        maskClosable={true}
-                        key={index}
-                        
+                        {/* <Button onClick={() => { setVisible(true); console.log("key is: ", item.id); }}>Open Resume</Button>
+
+                        <Modal
+                            title="Resume"
+                            visible={visible}
+                            onOk={() => setVisible(false)}
+                            onCancel={() => setVisible(false)}
+                            maskClosable={true}
+                            key={item.id}
                         >
-                           {atob(resume)}
-                        </Modal>             
-                    */}
+                            {atob(resume)}
+                        </Modal> */}
+
 
                     </div>
                 )
@@ -131,27 +136,27 @@ function Candidates() {
             dataIndex: 'operation',
             key: 'operation',
             align: 'center',
-            render: (all, record) => {
+            render: (operation, record) => {
 
                 return (
                     <div>
                         <Popconfirm
-                        title="Are you sure to delete?"
-                        onConfirm ={()=>{
-                            const index = user.indexOf(record)
-                            console.log("item is:", index);
-                            const newUserList = [...user]
-                            newUserList.splice(index, 1)
-                            setUser(newUserList)
-                            message.success("The item has been deleted",1.5)
+                            title="Are you sure to delete?"
+                            onConfirm={() => {
+                                const index = user.indexOf(record)
+                                console.log("item is:", index);
+                                const newUserList = [...user]
+                                newUserList.splice(index, 1)
+                                setUser(newUserList)
+                                message.success("The item has been deleted", 1.5)
 
-                        }}
-                        onCancel = {()=>{message.error("Cancelled",1.5)}}
-                        okText ="Yes"
-                        cancelText ="No"
+                            }}
+                            onCancel={() => { message.warn("Cancelled", 1.5) }}
+                            okText="Yes"
+                            cancelText="No"
                         >
                             <Button danger onClick={() => {
-                               
+
 
                             }}>Delete</Button>
                         </Popconfirm>
