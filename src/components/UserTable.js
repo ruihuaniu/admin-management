@@ -24,6 +24,7 @@ function Candidates() {
             dataIndex: 'id',
             key: 'id',
             align: 'center',
+            className: window.innerWidth>780?'show-column':'hide-column',
             // defaultSortOrder: 'ascend',
             sorter: (a, b) => a.id - b.id,
         },
@@ -57,6 +58,7 @@ function Candidates() {
             dataIndex: 'dob',
             key: 'dob',
             align: 'center',
+            className: window.innerWidth>780?'show-column':'hide-column',
             render: dob => (
                 <p>{dob.substr(0, 10)}</p>
             ),
@@ -67,6 +69,7 @@ function Candidates() {
             dataIndex: 'australian_citizen',
             key: 'australian_citizen',
             align: 'center',
+            className: window.innerWidth>780?'show-column':'hide-column',
             render: citizen => (
                 <p>{citizen ? 'YES' : (citizen === false ? 'NO' : '')}</p>
             ),
@@ -136,6 +139,7 @@ function Candidates() {
             dataIndex: 'operation',
             key: 'operation',
             align: 'center',
+            className: window.innerWidth>780?'show-column':'hide-column',
             render: (operation, record) => {
 
                 return (

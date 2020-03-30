@@ -21,12 +21,12 @@ const App = () => {
             <h1 className="title">Candidate Admin Tool <span className="powered-info">(Powered by React.js)</span></h1> 
             <UserContext.Provider value={{ users:[user, setUser], usersData: [userData, setUserData], selectedRow:[selectedRowKeys, setSelectedRowKeys] }}>
                 <Row justify="center" gutter={[0,16]}>
-                    <Col sm={24} lg={10} >     
+                    <Col xs={{span: 22}} md={18} lg={10} >     
                     <SearchUser />
                     </Col>
                 </Row>
                 <Row justify="center">
-                    <Col sm={24} lg={18} >     
+                    <Col sm={22} lg={18} >     
                     <UserTable />
                     </Col>
                 </Row>
@@ -45,17 +45,7 @@ const App = () => {
 
 
             <style jsx="true">{`
-            .title{
-                text-align:center;
-            }
-
-            .powered-info{
-                font-size:1rem;
-            }
-
-            .data-description{
-                font-style:italic;
-            }
+            
             
             `} </style>
 
