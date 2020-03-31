@@ -9,6 +9,7 @@
 * Open resumes of users through Modal
 * Add new user through 'Add User' button
 * Edit user through 'Edit' button
+* Search users by name (fuzzy search)
 * Delete user through 'Delete' button
 * Delete multiple users by selection
 
