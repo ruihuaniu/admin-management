@@ -20,10 +20,6 @@ export default function DeleteUser() {
         setUserData(newUserList)
         setSelectedRowKeys([])  //deselect the index of users 
         message.success("Selected items are deleted",2)
-
-      
-        
-
     }
 
     

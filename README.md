@@ -1,17 +1,19 @@
-# Candidate Admin Tool
+# Admin Management Tool
 
 > [Live Demo](https://candidate-admin.now.sh)
 
 ## Features
-* Read data from the local JSON file
-* List all the candidates with properties in a table
-* Description of individual candidates can be inline expanded
-* Columns of ID, Name, Date of Birth, Favourite Language and Years of Developer can be sorted ascending and descending
-* Resume of individual candidates can be opened through Modal
-* Candidates can be starred and submitted to a specified URL
+* List all the users with properties in a table
+* Expand descriptions of users inline
+* Sort columns of ID, Name, Date of Birth, Favourite Language and Years of Developer ascendingly or descendingly
+* Open resumes of users through Modal
+* Add new user through 'Add User' button
+* Edit user through 'Edit' button
+* Delete user through 'Delete' button
+* Delete multiple users by selection
 
 
-## Languages & Libraries Used
-* React
+## Languages & Libraries 
+* React.js
 
 

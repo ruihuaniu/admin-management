@@ -6,12 +6,13 @@ import 'antd/dist/antd.css'
 import { UserContext } from './UserContext'
 
 function Candidates() {
-    const { users, selectedRow } = useContext(UserContext)
+    const { users, usersData, selectedRow } = useContext(UserContext)
     const [user, setUser] = users
+    const [userData, setUserData] = usersData  //used for search feature
     const [selectedRowKeys, setSelectedRowKeys] = selectedRow
 
-    const { Panel } = Collapse;
-    const [visible, setVisible] = useState(false);
+    // const { Panel } = Collapse;
+    // const [visible, setVisible] = useState(false);
     // const [isSelected, setIsSelected] = useState(false);
     // const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     // const selectedCandidates = [];
@@ -152,6 +153,7 @@ function Candidates() {
                                 const newUserList = [...user]
                                 newUserList.splice(index, 1)
                                 setUser(newUserList)
+                                setUserData(newUserList)
                                 message.success("The item has been deleted", 1.5)
 
                             }}
