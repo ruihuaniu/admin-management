@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react'
-import { Button, Row, Col, Tooltip, Popconfirm, message } from 'antd'
+import React, { useContext,} from 'react'
+import { Button, Tooltip, Popconfirm, message } from 'antd'
 import { UserContext } from './UserContext'
 
 export default function DeleteUser() {
 
     const { users, usersData, selectedRow } = useContext(UserContext)
     const [user, setUser] = users
-    const [userData, setUserData] = usersData  //used for search feature
+    const [, setUserData] = usersData  //used for search feature
     const [selectedRowKeys, setSelectedRowKeys] = selectedRow
 
     const isSelected = selectedRowKeys.length > 0

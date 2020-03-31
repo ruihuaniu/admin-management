@@ -1,14 +1,12 @@
-import React, { useState, useContext } from 'react'
-// import data from '../data/sample-example'
-import { Table, Collapse, Modal, Button, Row, Col, Tooltip, Popconfirm, message } from 'antd'
-import axios from 'axios'
+import React, { useContext } from 'react'
+import { Table, Modal, Button, Popconfirm, message } from 'antd'
 import 'antd/dist/antd.css'
 import { UserContext } from './UserContext'
 
 function Candidates() {
     const { users, usersData, selectedRow } = useContext(UserContext)
     const [user, setUser] = users
-    const [userData, setUserData] = usersData  //used for search feature
+    const [, setUserData] = usersData  //used for search feature
     const [selectedRowKeys, setSelectedRowKeys] = selectedRow
 
     // const { Panel } = Collapse;
