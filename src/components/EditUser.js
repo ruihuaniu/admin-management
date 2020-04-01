@@ -124,7 +124,7 @@ function EditUser({index}) {
     return (
         <div>
 
-            <Button type="dashed" onClick={handleEditUser}>Edit User </Button>
+            <Button type="dashed" onClick={handleEditUser}>Edit</Button>
             <Modal
                 title={<h3>Edit User</h3>}
                 visible={visible}
