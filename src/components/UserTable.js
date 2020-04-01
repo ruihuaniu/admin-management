@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Table, Modal, Button, Popconfirm, message } from 'antd'
 import 'antd/dist/antd.css'
 import { UserContext } from './UserContext'
+import EditUser from './EditUser'
 
 function Candidates() {
     const { users, usersData, selectedRow } = useContext(UserContext)
@@ -58,9 +59,15 @@ function Candidates() {
             key: 'dob',
             align: 'center',
             className: window.innerWidth>780?'show-column':'hide-column',
-            render: dob => (
-                <p>{dob.substr(0, 10)}</p>
-            ),
+            render: dob => {
+                const dobArray = dob.substr(0,10).split('-');
+                [dobArray[0],dobArray[2]]= [dobArray[2],dobArray[0]];
+                dob = dobArray.join('-')
+
+                return(
+                    <p>{dob}</p>
+                )
+            },
             sorter: (a, b) => { return a.dob.localeCompare(b.dob) }
         },
         {
@@ -134,9 +141,44 @@ function Candidates() {
 
         },
         {
-            title: 'Operation',
-            dataIndex: 'operation',
-            key: 'operation',
+            title: 'Edit',
+            dataIndex: 'edit',
+            key: 'edit',
+            align: 'center',
+            className: window.innerWidth>780?'show-column':'hide-column',
+            render: (operation, record) => {
+
+                return (
+                    <div>
+                       <EditUser index={user.indexOf(record)}/>
+                       
+                       
+                        {/* <Popconfirm
+                            title="Are you sure to delete?"
+                            onConfirm={() => {
+                                const index = user.indexOf(record)
+                                console.log("item is:", index);
+                                const newUserList = [...user]
+                                newUserList.splice(index, 1)
+                                setUser(newUserList)
+                                setUserData(newUserList)
+                                message.success("The item has been deleted", 1.5)
+
+                            }}
+                            onCancel={() => { message.warn("Cancelled", 1.5) }}
+                            okText="Yes"
+                            cancelText="No"
+                        >
+                            <Button danger>Delete</Button>
+                        </Popconfirm> */}
+                    </div>
+                )
+            }
+        },
+        {
+            title: 'Delete',
+            dataIndex: 'delete',
+            key: 'delete',
             align: 'center',
             className: window.innerWidth>780?'show-column':'hide-column',
             render: (operation, record) => {
@@ -168,6 +210,7 @@ function Candidates() {
                 )
             }
         }
+
 
     ]
 
