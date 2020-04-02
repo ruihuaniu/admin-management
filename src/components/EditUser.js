@@ -147,13 +147,12 @@ function EditUser({index}) {
                         <Input  />
                     </Form.Item>
                     <Form.Item name="dob" label="Birthday" rules={[{ required: true, message: 'Please input the date of birthday' }]}>
-                        <DatePicker  />
+                        <DatePicker format='MMM Do YYYY' />
                     </Form.Item>
                     <Form.Item name="favourite_language" label="Favourite language" rules={[{ required: true }]}>
                         {/* <Input value ={language} onChange={(e)=>{setLanguage(e.target.value)}}/> */}
                         <Select
                             mode='multiple'
-
                         >
                             <Option value="JavaScript" >JavaScript</Option>
                             <Option value="Node.js" >Node.js</Option>

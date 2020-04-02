@@ -1,4 +1,4 @@
-import React, { useContext,} from 'react'
+import React, { useContext, useState,} from 'react'
 import { Button, Tooltip, Popconfirm, message } from 'antd'
 import { UserContext } from './UserContext'
 
@@ -8,6 +8,7 @@ export default function DeleteUser() {
     const [user, setUser] = users
     const [, setUserData] = usersData  //used for search feature
     const [selectedRowKeys, setSelectedRowKeys] = selectedRow
+    const [isHover, setIsHover] = useState(false)
 
     const isSelected = selectedRowKeys.length > 0
 
@@ -31,8 +32,10 @@ export default function DeleteUser() {
             <Tooltip
                 placement="top"
                 title="Select above first"
-                // visible={isSelected?false:true}  
-                trigger="hover"
+                visible={isSelected?false:isHover?true:false}  
+                //trigger="hover"
+                onMouseEnter = {()=> setIsHover(true)}
+                onMouseLeave ={()=>{setIsHover(false)}}
             >
                 <Popconfirm
                     title={"Are you sure you want to delete these " +selectedRowKeys.length+ " users?"}

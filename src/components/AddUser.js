@@ -52,9 +52,7 @@ export default function AddUser() {
     }
 
     const onCreate = (values) => {
-
         console.log("form.getFieldValue() ",form.getFieldsValue());
-        
         const formatValues = {
             ...values,
             'dob': values['dob'].format('YYYY-MM-DD'),
@@ -64,9 +62,7 @@ export default function AddUser() {
             'resume_base64': btoa("Resume")
         }
         console.log("Value in AddUser.js is: ", values);
-
         console.log("formatValue in AddUser.js is: ", formatValues);
-
         setUser([...user, formatValues])
         setUserData([...userData, formatValues]) 
         
@@ -75,15 +71,10 @@ export default function AddUser() {
     const normFile = (e) => {
         console.log("file upload info: ", e);
         if (Array.isArray(e)) {
-           
             return e
-
         }
-        
-        return e & e.fileList
-
-
-    }
+            return e & e.fileList
+   }
 
     const handleSubmit = (values) => {
         //method 1: work well, but a little complex compared with method 2
@@ -123,13 +114,12 @@ export default function AddUser() {
                         <Input  />
                     </Form.Item>
                     <Form.Item name="dob" label="Birthday" rules={[{ required: true, message: 'Please input the date of birthday' }]}>
-                        <DatePicker  />
+                        <DatePicker format='MMM Do YYYY'  />
                     </Form.Item>
                     <Form.Item name="favourite_language" label="Favourite language" rules={[{ required: true }]}>
                         {/* <Input value ={language} onChange={(e)=>{setLanguage(e.target.value)}}/> */}
                         <Select
                             mode='multiple'
-
                         >
                             <Option value="JavaScript" >JavaScript</Option>
                             <Option value="Node.js" >Node.js</Option>
