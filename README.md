@@ -1,6 +1,6 @@
 # Admin Management Tool
 
-> [Live Demo](https://candidate-admin.now.sh)
+> [Live Demo](https://admin-management.now.sh)
 
 ## Features
 * List all the users with properties in a table
