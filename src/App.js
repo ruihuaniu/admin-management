@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Col, Row } from 'antd'
 import {GithubOutlined } from '@ant-design/icons'
-import { UserContext } from './components/UserContext'
+import UserContext from './components/UserContext'
 import data from './data/sample-example'
 import UserTable from './components/UserTable'
 import AddUser from './components/AddUser'

@@ -1,10 +1,10 @@
 import React, { useContext, useState,} from 'react'
 import { Button, Tooltip, Popconfirm, message } from 'antd'
-import { UserContext } from './UserContext'
+import {useUserContext} from './UserContext'
 
 export default function DeleteUser() {
 
-    const { users, usersData, selectedRow } = useContext(UserContext)
+    const { users, usersData, selectedRow } = useUserContext()  //useContext(UserContext)
     const [user, setUser] = users
     const [, setUserData] = usersData  //used for search feature
     const [selectedRowKeys, setSelectedRowKeys] = selectedRow
@@ -28,7 +28,7 @@ export default function DeleteUser() {
         message.error("Cancelled",1.5)
     }
     return (
-        <div>
+        <div className="deleteUser-container">
             <Tooltip
                 placement="top"
                 title="Select above first"

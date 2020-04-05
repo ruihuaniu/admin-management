@@ -1,19 +1,19 @@
 import React, { useState, useContext } from 'react'
 import { Button, Modal, Form, Select, Upload,  Input, InputNumber, DatePicker, message } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
-import { UserContext } from './UserContext'
+import UserContext, { useUserContext } from './UserContext'
 import moment from 'moment';
 
-function EditUser({index}) {
+function EditUser(props) {
 
     const [visible, setVisible] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [checkEdit, setCheckEdit] = useState(true)
-    const { users, usersData } = useContext(UserContext)
+    const { users} = useUserContext() //useContext(UserContext)
     const [user, setUser] = users
-    const [userData, setUserData] = usersData  //used for search feature
     // const [selectedRowKeys, setSelectedRowKeys] = selectedRow
     const { Option } = Select
+    const index = props.index
 
     
     const [form] = Form.useForm()
@@ -74,7 +74,7 @@ function EditUser({index}) {
         newUserList.splice(index,1,formatValues)
 
         setUser(newUserList)
-        setUserData(newUserList) 
+        
         
     }
 
@@ -122,7 +122,7 @@ function EditUser({index}) {
     }
 
     return (
-        <div>
+        <div className="editUser-container">
 
             <Button type="dashed" onClick={handleEditUser}>Edit</Button>
             <Modal

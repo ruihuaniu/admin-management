@@ -1,17 +1,15 @@
 import React, { useContext } from 'react'
-import { Input, Button } from 'antd'
-import cloneDeep from 'lodash/cloneDeep';
-import { UserContext } from './UserContext'
-import data from '../data/sample-example'
+import { Input,} from 'antd'
+import { useUserContext } from './UserContext'
+
 
 
 function SearchUser() {
 
 
-
-    const { users, usersData } = useContext(UserContext)
+    const { users, usersData } = useUserContext() //instead of useContext(UserContext)
     const [user, setUser] = users
-    const [userData, setUserData] = usersData  //used for search feature
+    const [userData] = usersData  //used for search feature
 
     const { Search } = Input
     // const userCopy = JSON.parse(JSON.stringify(user))
@@ -27,7 +25,7 @@ function SearchUser() {
     }
 
     return (
-        <div>
+        <div className="searchUser-container">
             <Search
                 placeholder="search name here..."
                 //onSearch={(value)=>{handleSearch(value)}}

@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { Table, Modal, Button, Popconfirm, message } from 'antd'
 import 'antd/dist/antd.css'
-import { UserContext } from './UserContext'
+import UserContext, { useUserContext } from './UserContext'
 import EditUser from './EditUser'
 
-function Candidates() {
-    const { users, usersData, selectedRow } = useContext(UserContext)
+function UserTable() {
+    const { users, usersData, selectedRow } = useUserContext() //useContext(UserContext)
     const [user, setUser] = users
     const [, setUserData] = usersData  //used for search feature
     const [selectedRowKeys, setSelectedRowKeys] = selectedRow
@@ -227,7 +227,7 @@ function Candidates() {
 
 
     return (
-        <div>
+        <div className="userTable-container">
 
 
             <Table
@@ -278,4 +278,4 @@ function Candidates() {
 }
 
 
-export default Candidates
+export default UserTable

@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { Button, Modal, Form, Select, Upload, Row, Col, Input, InputNumber, DatePicker, message } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
-import { UserContext } from './UserContext'
+import {useUserContext} from './UserContext'
 
 export default function AddUser() {
 
     const [visible, setVisible] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
-    const { users, usersData } = useContext(UserContext)
+    const { users, usersData } = useUserContext() //useContext(UserContext)
     const [user, setUser] = users
     const [userData, setUserData] = usersData  //used for search feature
     // const [selectedRowKeys, setSelectedRowKeys] = selectedRow
@@ -92,7 +92,7 @@ export default function AddUser() {
     }
 
     return (
-        <div>
+        <div className="addUser-container">
 
             <Button type="primary" onClick={() => setVisible(true)}>Add User </Button>
             <Modal
