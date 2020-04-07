@@ -24,7 +24,7 @@ function UserTable() {
             dataIndex: 'id',
             key: 'id',
             align: 'center',
-            className: window.innerWidth>780?'show-column':'hide-column',
+            className: window.innerWidth > 780 ? 'show-column' : 'hide-column',
             // defaultSortOrder: 'ascend',
             sorter: (a, b) => a.id - b.id,
         },
@@ -58,13 +58,13 @@ function UserTable() {
             dataIndex: 'dob',
             key: 'dob',
             align: 'center',
-            className: window.innerWidth>780?'show-column':'hide-column',
+            className: window.innerWidth > 780 ? 'show-column' : 'hide-column',
             render: dob => {
-                const dobArray = dob.substr(0,10).split('-');
-                [dobArray[0],dobArray[2]]= [dobArray[2],dobArray[0]];
+                const dobArray = dob.substr(0, 10).split('-');
+                [dobArray[0], dobArray[2]] = [dobArray[2], dobArray[0]];
                 dob = dobArray.join('-')
 
-                return(
+                return (
                     <p>{dob}</p>
                 )
             },
@@ -75,7 +75,7 @@ function UserTable() {
             dataIndex: 'australian_citizen',
             key: 'australian_citizen',
             align: 'center',
-            className: window.innerWidth>780?'show-column':'hide-column',
+            className: window.innerWidth > 780 ? 'show-column' : 'hide-column',
             render: citizen => (
                 <p>{citizen ? 'YES' : (citizen === false ? 'NO' : '')}</p>
             ),
@@ -101,6 +101,7 @@ function UserTable() {
             dataIndex: 'resume_base64',
             key: 'resume_base64',
             align: 'center',
+            className: window.innerWidth > 780 ? 'show-column' : 'hide-column',
             render: (resume, item) => {
 
                 return (
@@ -110,12 +111,12 @@ function UserTable() {
                             console.log("resume is:", item);
                             // console.log("index is:", index);
                             Modal.confirm({
-                                title: 'Resume', 
+                                title: 'Resume',
                                 content: atob(resume),
-                                 width:1000, 
+                                width: 1000,
                                 //  cancelText:'', 
-                                 maskClosable:true,
-                                 cancelButtonProps:{style: { display: 'none' }}  //hide the cancel button
+                                maskClosable: true,
+                                cancelButtonProps: { style: { display: 'none' } }  //hide the cancel button
                             })
                         }}>Open Resume</Button>
 
@@ -145,32 +146,12 @@ function UserTable() {
             dataIndex: 'edit',
             key: 'edit',
             align: 'center',
-            className: window.innerWidth>780?'show-column':'hide-column',
+            className: window.innerWidth > 780 ? 'show-column' : 'hide-column',
             render: (operation, record) => {
 
                 return (
                     <div>
-                       <EditUser index={user.indexOf(record)}/>
-                       
-                       
-                        {/* <Popconfirm
-                            title="Are you sure to delete?"
-                            onConfirm={() => {
-                                const index = user.indexOf(record)
-                                console.log("item is:", index);
-                                const newUserList = [...user]
-                                newUserList.splice(index, 1)
-                                setUser(newUserList)
-                                setUserData(newUserList)
-                                message.success("The item has been deleted", 1.5)
-
-                            }}
-                            onCancel={() => { message.warn("Cancelled", 1.5) }}
-                            okText="Yes"
-                            cancelText="No"
-                        >
-                            <Button danger>Delete</Button>
-                        </Popconfirm> */}
+                        <EditUser index={user.indexOf(record)} />
                     </div>
                 )
             }
@@ -180,7 +161,7 @@ function UserTable() {
             dataIndex: 'delete',
             key: 'delete',
             align: 'center',
-            className: window.innerWidth>780?'show-column':'hide-column',
+            className: window.innerWidth > 780 ? 'show-column' : 'hide-column',
             render: (operation, record) => {
 
                 return (
@@ -194,17 +175,22 @@ function UserTable() {
                                 newUserList.splice(index, 1)
                                 setUser(newUserList)
                                 setUserData(newUserList)
-                                message.success("The item has been deleted", 1.5)
+                                console.log("rowkeys,", selectedRowKeys);
+                                setSelectedRowKeys([0])
+                                // if (selectedRowKeys.includes(index)) {
+                                //     selectedRowKeys.splice(selectedRowKeys.indexOf(index), 1)
+                                //     setSelectedRowKeys([...selectedRowKeys])
+                                //     //console.log("SelectedRowKeys includes it! ", record);
 
+                                // }
+                                // console.log("after rowkeys,", selectedRowKeys);
+                                message.success("The item has been deleted", 1.5)
                             }}
                             onCancel={() => { message.warn("Cancelled", 1.5) }}
                             okText="Yes"
                             cancelText="No"
                         >
-                            <Button danger onClick={() => {
-
-
-                            }}>Delete</Button>
+                            <Button danger >Delete</Button>
                         </Popconfirm>
                     </div>
                 )
@@ -218,7 +204,7 @@ function UserTable() {
     const rowSelection = {
         selectedRowKeys,
         onChange: selectedRowKeys => {
-            // console.log("selectedRowKeys changed: ", selectedRowKeys);
+            console.log("selectedRowKeys changed: ", selectedRowKeys);
             setSelectedRowKeys(selectedRowKeys);
 
         }
