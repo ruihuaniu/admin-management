@@ -176,7 +176,7 @@ function UserTable() {
                                 setUser(newUserList)
                                 setUserData(newUserList)
                                 console.log("rowkeys,", selectedRowKeys);
-                                setSelectedRowKeys([0])
+                                setSelectedRowKeys([])
                                 // if (selectedRowKeys.includes(index)) {
                                 //     selectedRowKeys.splice(selectedRowKeys.indexOf(index), 1)
                                 //     setSelectedRowKeys([...selectedRowKeys])
