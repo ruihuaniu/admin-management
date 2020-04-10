@@ -54,7 +54,7 @@ function UserTable() {
         //     )
         // },
         {
-            title: 'Date of Birth',
+            title: 'Birthday',
             dataIndex: 'dob',
             key: 'dob',
             align: 'center',
@@ -70,18 +70,18 @@ function UserTable() {
             },
             sorter: (a, b) => { return a.dob.localeCompare(b.dob) }
         },
-        {
-            title: 'Australian Citizen',
-            dataIndex: 'australian_citizen',
-            key: 'australian_citizen',
-            align: 'center',
-            className: window.innerWidth > 780 ? 'show-column' : 'hide-column',
-            render: citizen => (
-                <p>{citizen ? 'YES' : (citizen === false ? 'NO' : '')}</p>
-            ),
-            // sorter: (a, b) => { return (a.australian_citizen && b.australian_citizen)?a.australian_citizen.localeCompare(b.australian_citizen):(a-b) },
+        // {
+        //     title: 'Australian Citizen',
+        //     dataIndex: 'australian_citizen',
+        //     key: 'australian_citizen',
+        //     align: 'center',
+        //     className: window.innerWidth > 780 ? 'show-column' : 'hide-column',
+        //     render: citizen => (
+        //         <p>{citizen ? 'YES' : (citizen === false ? 'NO' : '')}</p>
+        //     ),
+        //     // sorter: (a, b) => { return (a.australian_citizen && b.australian_citizen)?a.australian_citizen.localeCompare(b.australian_citizen):(a-b) },
 
-        },
+        // },
         {
             title: 'Favourite Language',
             dataIndex: 'favourite_language',

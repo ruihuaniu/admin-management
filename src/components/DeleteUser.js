@@ -1,6 +1,6 @@
-import React, { useContext, useState,} from 'react'
+import React, { useContext, useState, } from 'react'
 import { Button, Tooltip, Popconfirm, message } from 'antd'
-import {useUserContext} from './UserContext'
+import { useUserContext } from './UserContext'
 
 export default function DeleteUser() {
 
@@ -20,31 +20,31 @@ export default function DeleteUser() {
         setUser(newUserList)
         setUserData(newUserList)
         setSelectedRowKeys([])  //deselect the index of users 
-        message.success("Selected items are deleted",2)
+        message.success("Selected items are deleted", 2)
     }
 
-    
+
     const handleCancel = () => {
-        message.error("Cancelled",1.5)
+        message.error("Cancelled", 1.5)
     }
     return (
         <div className="deleteUser-container">
             <Tooltip
                 placement="top"
-                title="Select above first"
-                visible={isSelected?false:isHover?true:false}  
+                title="Select from above first"
+                visible={isSelected ? false : isHover ? true : false}
                 //trigger="hover"
-                onMouseEnter = {()=> setIsHover(true)}
-                onMouseLeave ={()=>{setIsHover(false)}}
+                onMouseEnter={() => setIsHover(true)}
+                onMouseLeave={() => { setIsHover(false) }}
             >
                 <Popconfirm
-                    title={"Are you sure you want to delete these " +selectedRowKeys.length+ " users?"}
+                    title={"Are you sure you want to delete these " + selectedRowKeys.length + " users?"}
                     onConfirm={() => deleteUser(selectedRowKeys)}
                     onCancel={handleCancel}
                     okText="Yes"
                     CancelText="No"
                     disabled={!isSelected}
-                   
+
                 >
                     <Button type="danger" disabled={!isSelected} >
                         Delete {isSelected ? `${selectedRowKeys.length} items` : ""}
