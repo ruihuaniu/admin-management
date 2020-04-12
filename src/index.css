@@ -34,6 +34,10 @@ code {
   display: none;
 }
 
+.footer-container {
+  display: none;
+}
+
 @media only screen and (max-width: 560px) {
   .powered-info {
     display: block;
@@ -41,5 +45,13 @@ code {
 
   .addUser-container {
     margin-left: 25px;
+  }
+
+  .footer-container {
+    display: block;
+    text-align: center;
+    background: #96a1b4;
+    color: #f0f0f0;
+    padding: 5px;
   }
 }

@@ -1,12 +1,4 @@
-var value = 1;
+const arr = "djkfjfjfjfj?xxjeye=nrh"
 
-function foo() {
-    console.log(value);
-}
-
-function bar() {
-    var value = 2;
-    foo();
-}
-
-bar();
+//arr.split('?')
+console.log(arr.split('?')[1].split('='));
